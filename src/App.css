@@ -1,0 +1,235 @@
+/* Общие стили для контейнера приложения */
+.app-container {
+  display: flex;
+  height: calc(100vh - 150px);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Панель инструментов */
+.toolbar {
+  width: 220px;
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  border-right: 2px solid #34495e;
+  box-sizing: border-box;
+}
+
+.toolbar h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.toolbar-item {
+  background: #34495e;
+  padding: 10px 15px;
+  margin-bottom: 12px;
+  text-align: center;
+  cursor: grab;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.toolbar-item:hover {
+  background: #3d566e;
+}
+
+/* Кнопки */
+.simulate-button,
+.save-button,
+.connect-button,
+.add-next-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 14px;
+}
+
+.simulate-button {
+  background: #3498db;
+}
+
+.simulate-button:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+.save-button {
+  background: #27ae60;
+}
+
+.save-button:hover {
+  background: #219150;
+  transform: scale(1.05);
+}
+
+.connect-button {
+  background: #f39c12;
+}
+
+.connect-button:hover {
+  background: #e67e22;
+  transform: scale(1.05);
+}
+
+.add-next-button {
+  background: #5cb85c;
+}
+
+.add-next-button:hover {
+  background: #4cae4c;
+  transform: scale(1.05);
+}
+
+/* Рабочая область (Canvas) */
+.canvas {
+  flex: 1;
+  position: relative;  /* необходимо для корректного абсолютного позиционирования внутренних элементов */
+  background: #ecf0f1;
+  overflow: hidden;
+  transition: border 0.3s ease;
+}
+
+/* Слой для отображения соединений между блоками */
+.connections-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Стили для блоков на холсте */
+.canvas-block {
+  width: 150px;
+  min-height: 80px;
+  background: linear-gradient(135deg, #ffffff, #f2f2f2);
+  border: 2px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  position: absolute;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.canvas-block:hover {
+  transform: scale(1.05);
+  border-color: #3498db;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.canvas-block.selected {
+  border-color: #e74c3c;
+  box-shadow: 0 0 12px rgba(231, 76, 60, 0.6);
+}
+
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.block-type {
+  font-size: 12px;
+  color: #555;
+}
+
+/* Сводка блока – отображает полный текст настроек (условий) */
+.block-summary {
+  font-size: 10px;
+  color: #777;
+  margin-top: 6px;
+  white-space: normal;           /* Разрешает перенос строк */
+  overflow-wrap: break-word;     /* Перенос длинных слов */
+}
+
+/* Лог симуляции */
+.simulation-log {
+  padding: 10px;
+  background: #ecf0f1;
+  border-top: 2px solid #bdc3c7;
+  height: 150px;
+  overflow-y: auto;
+  font-family: monospace;
+}
+
+/* Боковая панель */
+.side-panel {
+  width: 280px;
+  background: #f7f9fa;
+  padding: 20px;
+  border-left: 2px solid #ecf0f1;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+}
+
+.side-panel.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+  color: #7f8c8d;
+}
+
+.side-panel h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Стили для кастомных подсказок (Tooltip) */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 8px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;  /* Располагаем сверху */
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
